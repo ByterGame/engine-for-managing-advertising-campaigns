@@ -125,9 +125,7 @@ class CampaignService:
             
             self.db.add(schedule_slot)
             created_slots.append(schedule_slot)
-        
-        await self.db.flush()
-        
+
         if schedule_slots:
             stmt = (
                 update(Campaign)
@@ -142,6 +140,7 @@ class CampaignService:
             )
         
         await self.db.execute(stmt)
+        await self.db.commit()
         await self.db.flush()
         
         return created_slots
@@ -154,7 +153,6 @@ class CampaignService:
     async def delete_campaign_schedule(self, campaign_id: UUID) -> bool:
         stmt = delete(CampaignSchedule).where(CampaignSchedule.campaign_id == campaign_id)
         result = await self.db.execute(stmt)
-        await self.db.flush()
         
         update_stmt = (
             update(Campaign)
@@ -162,6 +160,7 @@ class CampaignService:
             .values(schedule_enabled=False)
         )
         await self.db.execute(update_stmt)
+        await self.db.commit()
         await self.db.flush()
         
         return result.rowcount > 0
@@ -180,6 +179,7 @@ class CampaignService:
         )
         
         result = await self.db.execute(stmt)
+        await self.db.commit()
         await self.db.flush()
         
         return result.scalar_one_or_none()
