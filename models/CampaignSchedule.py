@@ -6,11 +6,11 @@ from models.Base import Base
 import uuid
 
 
-class CompaignSchedule(Base):
-    __tablename__ = "compaign_schedules"
+class CampaignSchedule(Base):
+    __tablename__ = "campaign_schedules"
 
-    compaign_id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True),
-                                                   ForeignKey("compaigns.id", ondelete="CASCADE"),
+    campaign_id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True),
+                                                   ForeignKey("campaigns.id", ondelete="CASCADE"),
                                                    nullable=False,
                                                    index=True)
     

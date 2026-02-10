@@ -4,10 +4,10 @@ from uuid import UUID
 from typing import Optional
 from . import BaseSchema, BaseCreateSchema, BaseUpdateSchema
 
-class CompaignScheduleBase(BaseModel):
+class CampaignScheduleBase(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     
-    compaign_id: UUID = Field(...)
+    campaign_id: UUID = Field(...)
     day_of_week: int = Field(..., ge=0, le=6, description="0=Monday, 6=Sunday")
     start_time: time
     end_time: time
@@ -20,11 +20,11 @@ class CompaignScheduleBase(BaseModel):
         return end_time
     
 
-class CompaignScheduleCreate(CompaignScheduleBase, BaseCreateSchema):
+class CampaignScheduleCreate(CampaignScheduleBase, BaseCreateSchema):
     pass
 
-class CompaignScheduleUpdate(BaseUpdateSchema):
-    compaign_id: Optional[UUID] = None
+class CampaignScheduleUpdate(BaseUpdateSchema):
+    campaign_id: Optional[UUID] = None
     day_of_week: Optional[int] = Field(None, ge=0, le=6)
     start_time: Optional[time] = None
     end_time: Optional[time] = None
@@ -37,5 +37,5 @@ class CompaignScheduleUpdate(BaseUpdateSchema):
                 raise ValueError('End time must be after start time')
         return end_time
 
-class CompaignScheduleRead(CompaignScheduleBase, BaseSchema):
+class CampaignScheduleRead(CampaignScheduleBase, BaseSchema):
     pass

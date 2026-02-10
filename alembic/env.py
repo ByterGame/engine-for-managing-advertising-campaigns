@@ -10,8 +10,8 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 from models.Base import Base
-from models.Compaign import Compaign
-from models.CompaignSchedule import CompaignSchedule
+from models.Campaign import Campaign
+from models.CampaignSchedule import CampaignSchedule
 from models.RuleEvaluationLog import RuleEvaluationLog
 
 POSTGRES_DB = os.getenv("POSTGRES_DB", "db_name")

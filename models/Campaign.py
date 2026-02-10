@@ -6,8 +6,8 @@ from models.Base import Base
 from models.enums import Statuses
 
 
-class Compaign(Base):
-    __tablename__ = "compaigns"
+class Campaign(Base):
+    __tablename__ = "campaigns"
 
     name: Mapped[str] = mapped_column(String(255), unique=True, index=True, nullable=False)
 

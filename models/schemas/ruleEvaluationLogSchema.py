@@ -9,7 +9,7 @@ from . import BaseSchema, BaseCreateSchema, BaseUpdateSchema
 class RuleEvaluationLogBase(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     
-    compaign_id: UUID = Field(...)
+    campaign_id: UUID = Field(...)
     triggered_rule: Optional[str] = Field(None, max_length=80)
     previous_target: Statuses = Statuses.PAUSED
     new_target: Statuses = Statuses.PAUSED
@@ -48,7 +48,7 @@ class RuleEvaluationLogCreate(RuleEvaluationLogBase, BaseCreateSchema):
 class RuleEvaluationLogUpdate(BaseUpdateSchema):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     
-    compaign_id: Optional[UUID] = None
+    campaign_id: Optional[UUID] = None
     triggered_rule: Optional[str] = Field(None, max_length=80)
     previous_target: Optional[Statuses] = None
     new_target: Optional[Statuses] = None

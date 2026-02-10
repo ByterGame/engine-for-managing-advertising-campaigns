@@ -4,7 +4,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from models.enums import Statuses
 from . import BaseSchema, BaseCreateSchema, BaseUpdateSchema
 
-class CompaignBase(BaseModel):
+class CampaignBase(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     
     name: str = Field(..., min_length=1, max_length=255)
@@ -17,10 +17,10 @@ class CompaignBase(BaseModel):
     stock_days_min: Optional[int] = Field(None, ge=0, le=365)
     schedule_enabled: bool = False
 
-class CompaignCreate(CompaignBase, BaseCreateSchema):
+class CampaignCreate(CampaignBase, BaseCreateSchema):
     pass
 
-class CompaignUpdate(BaseUpdateSchema):
+class CampaignUpdate(BaseUpdateSchema):
     name: Optional[str] = Field(None, min_length=1, max_length=255)
     current_status: Optional[Statuses] = None
     target_status: Optional[Statuses] = None
@@ -31,5 +31,5 @@ class CompaignUpdate(BaseUpdateSchema):
     stock_days_min: Optional[int] = Field(None, ge=0, le=365)
     schedule_enabled: Optional[bool] = None
 
-class CompaignRead(CompaignBase, BaseSchema):
+class CampaignRead(CampaignBase, BaseSchema):
     pass
