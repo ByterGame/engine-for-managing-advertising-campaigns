@@ -1,0 +1,9 @@
+pytest==9.0.2
+pytest-asyncio==1.3.0
+pytest-cov==7.0.0
+httpx==0.28.1
+aiosqlite==0.22.1
+SQLAlchemy==2.0.46
+pydantic==2.12.5
+fastapi==0.128.5
+asyncpg==0.31.0
