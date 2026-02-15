@@ -21,7 +21,6 @@ class CampaignService:
         self.db.add(campaign)
         await self.db.flush()
         await self.db.refresh(campaign)
-        
         return campaign
     
     async def get_campaign(self, campaign_id: UUID) -> Optional[Campaign]:
@@ -140,7 +139,6 @@ class CampaignService:
             )
         
         await self.db.execute(stmt)
-        await self.db.commit()
         await self.db.flush()
         
         return created_slots
@@ -160,7 +158,6 @@ class CampaignService:
             .values(schedule_enabled=False)
         )
         await self.db.execute(update_stmt)
-        await self.db.commit()
         await self.db.flush()
         
         return result.rowcount > 0
@@ -179,7 +176,6 @@ class CampaignService:
         )
         
         result = await self.db.execute(stmt)
-        await self.db.commit()
         await self.db.flush()
         
         return result.scalar_one_or_none()

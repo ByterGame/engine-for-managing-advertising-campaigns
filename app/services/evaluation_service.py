@@ -235,7 +235,6 @@ class EvaluationService:
         
         log_entry = RuleEvaluationLog(**log_data.model_dump())
         self.db.add(log_entry)
-        await self.db.commit()
         await self.db.flush()
         
         return log_entry
